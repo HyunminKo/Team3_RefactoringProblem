@@ -2,19 +2,17 @@ package com.nts.cleancode.collections;
 
 public abstract class AbstractCollection{
 	protected static int INITIAL_CAPACITY = 10;
-	protected Object[] elements = new Object[10];
+	protected Object[] elements = new Object[INITIAL_CAPACITY];
 	protected int size = 0;
 	protected boolean readOnly;
 
 	
 	public void addAll(AbstractCollection collection) {
-			for (int i=0; i < collection.size(); i++) {
-				if (!contains(collection.get(i))) {
-					add(collection.get(i));
-				}
+		for (int i=0; i < collection.size(); i++) {
+			if (!contains(collection.get(i))) {
+				add(collection.get(i));
 			}
-	}
-	public void add(Object key, Object value) {
+		}
 	}
 	public boolean isEmpty() {
 		return size == 0;

@@ -1,6 +1,7 @@
 package com.nts.cleancode.collections;
 
-public class Map extends AbstractCollection {
+public class Map{
+	protected static int INITIAL_CAPACITY = 10;
 	protected Object[] keys = new Object[INITIAL_CAPACITY];
 	protected Object[] values = new Object[INITIAL_CAPACITY];
 	private int size = 0;
