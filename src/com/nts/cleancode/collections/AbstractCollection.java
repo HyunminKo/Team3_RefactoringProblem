@@ -1,11 +1,11 @@
 package com.nts.cleancode.collections;
 
 public abstract class AbstractCollection{
-	public abstract boolean isEmpty();
+	protected Object[] elements = new Object[10];
+	protected int size = 0;
+	protected boolean readOnly;
+
 	public abstract void add(Object element);
-	public abstract boolean remove(Object element);
-	public abstract boolean contains(Object element);
-	public abstract int size();
 	
 	public void addAll(AbstractCollection c) {
 		if (c instanceof Set) {
@@ -17,7 +17,7 @@ public abstract class AbstractCollection{
 			}
 			
 		} else if (c instanceof List) {
-			List l = (List)c;
+			AbstractCollection l = (AbstractCollection)c;
 			for (int i=0; i < l.size(); i++) {
 				if (!contains(l.get(i))) {
 					add(l.get(i));
@@ -31,5 +31,52 @@ public abstract class AbstractCollection{
 	}
 	
 	public void add(Object key, Object value) {
+	}
+	public boolean isEmpty() {
+		return size == 0;
+	}
+	public boolean contains(Object element) {
+		for (int i=0; i<size; i++) 
+			if (elements[i].equals(element))
+				return true;
+		return false;
+	}
+	public int size() {
+		return size;
+	}
+	public boolean remove(Object element) {
+		if (readOnly)
+			return false;
+		else 	
+			for (int i = 0; i < size; i++)
+				if (elements[i].equals(element)) {
+					elements[i] = null;
+					Object[] newElements = new Object[size - 1];
+					int k = 0;
+					for (int j = 0; j < size; j++) {
+						if (elements[j] != null)
+							newElements[k++] = elements[j];
+					}
+					size--;
+					elements = newElements;
+					return true;
+				}
+		return false;
+	}
+	public Object get(int i) {
+		return elements[i];
+	}
+	public int capacity() {
+		return elements.length;
+	}
+	public void set(int i, Object value) {
+		if (!readOnly) {
+			if (i >= size)
+				throw new ArrayIndexOutOfBoundsException();
+			elements[i] = value;
+		}
+	}
+	public void setReadOnly(boolean b) {
+		readOnly = b;
 	}
 }
