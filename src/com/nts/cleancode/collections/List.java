@@ -19,7 +19,7 @@ public class List extends AbstractCollection {
 
 	private void grow() {
 		Object[] newElements =
-			new Object[elements.length + 10];
+			new Object[elements.length + INITIAL_CAPACITY];
 		for (int i = 0; i < size; i++)
 			newElements[i] = elements[i];
 		elements = newElements;
