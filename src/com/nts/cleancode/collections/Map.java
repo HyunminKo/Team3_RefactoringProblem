@@ -87,4 +87,5 @@ public class Map extends AbstractCollection {
 	public void setReadOnly(boolean b) {
 		readOnly = b;
 	}
+
 }

@@ -11,9 +11,9 @@ import com.nts.cleancode.collections.List;
 import com.nts.cleancode.collections.Set;
 
 public class ListTest {
-	private AbstractCollection empty;
-	private AbstractCollection oneElement;
-	private AbstractCollection manyElement;
+	private List empty;
+	private List oneElement;
+	private List manyElement;
 
 	@Before
 	public void setUp() {

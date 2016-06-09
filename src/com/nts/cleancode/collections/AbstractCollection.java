@@ -7,25 +7,13 @@ public abstract class AbstractCollection{
 	protected boolean readOnly;
 
 	
-	public void addAll(AbstractCollection c) {
-		if (c instanceof Set) {
-			Set s = (Set)c;
-			for (int i=0; i < s.size(); i++) {
-				if (!contains(s.get(i))) {
-					add(s.get(i));
+	public void addAll(AbstractCollection collection) {
+			for (int i=0; i < collection.size(); i++) {
+				if (!contains(collection.get(i))) {
+					add(collection.get(i));
 				}
 			}
-			
-		} else if (c instanceof List) {
-			AbstractCollection l = (AbstractCollection)c;
-			for (int i=0; i < l.size(); i++) {
-				if (!contains(l.get(i))) {
-					add(l.get(i));
-				}
-			}
-		}
 	}
-	
 	public void add(Object key, Object value) {
 	}
 	public boolean isEmpty() {
@@ -64,13 +52,6 @@ public abstract class AbstractCollection{
 	}
 	public int capacity() {
 		return elements.length;
-	}
-	public void set(int i, Object value) {
-		if (!readOnly) {
-			if (i >= size)
-				throw new ArrayIndexOutOfBoundsException();
-			elements[i] = value;
-		}
 	}
 	public void setReadOnly(boolean b) {
 		readOnly = b;
